@@ -2,26 +2,28 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-class UserBase(BaseModel):
-    FirstName: str
-    LastName: str
-    Email: str
-    MobileNumber: str
-    BirthDate: str
-    Country: str
-    State: str
-    City: str
-    Neighborhood: str
-    Transport: str
-    WorkedAsDelivery: str
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
+    user_type: str
+    full_name: Optional[str] = None
 
 
-class UserCreate(UserBase):
-    pass
+class UserSignIn(BaseModel):
+    username: str
+    password: str
 
 
-class User(UserBase):
-    id: int
-
-    class Config:
-        orm_mode = True
+class DeliveryGuy(BaseModel):
+    first_name: str
+    last_name: str
+    email: str
+    mobile_number: int
+    birth_date: str
+    country: str
+    state: str
+    city: str
+    neighborhood: str
+    transport: str
+    worked_as_delivery: str
